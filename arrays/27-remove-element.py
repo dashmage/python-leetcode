@@ -1,4 +1,3 @@
-
 """
 27. Remove Element
 Easy
@@ -51,6 +50,7 @@ Constraints:
 
 
 """
+
 
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:

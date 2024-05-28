@@ -1,4 +1,3 @@
-
 """
 1. Two Sum
 Easy
@@ -35,6 +34,7 @@ Only one valid answer exists.
 Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 """
 
+
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         num_map = {}  # num:index
@@ -43,4 +43,3 @@ class Solution:
             if complement in num_map:
                 return [num_map[complement], i]
             num_map[nums[i]] = i
-
