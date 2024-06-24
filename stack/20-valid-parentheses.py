@@ -25,7 +25,14 @@ Example 3:
 Input: s = "(]"
 Output: false
 
+Example 4:
+Input: s = "())"
+Output: false
  
+Example 5:
+Input: s = "()["
+Output: false
+
 Constraints:
 
 1 <= s.length <= 104
@@ -37,5 +44,16 @@ s consists of parentheses only '()[]{}'.
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        pass
+        left = "([{"
+        right = ")]}"
+        stack = []
+        for c in s:
+            if c in left:
+                stack.append(c)
+            else:
+                if len(stack) == 0:
+                    return False
+                if right.index(c) != left.index(stack.pop()):
+                    return False
+        return len(stack) == 0
 
