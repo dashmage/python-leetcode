@@ -25,7 +25,7 @@ for (int i = 0; i < actualLength; i++) {
 }
 
 If all assertions pass, then your solution will be accepted.
- 
+
 Example 1:
 
 Input: nums = [3,2,2,3], val = 3
@@ -41,7 +41,7 @@ Explanation: Your function should return k = 5, with the first five elements of 
 Note that the five elements can be returned in any order.
 It does not matter what you leave beyond the returned k (hence they are underscores).
 
- 
+
 Constraints:
 
 0 <= nums.length <= 100
@@ -60,3 +60,18 @@ class Solution:
                 nums[k] = nums[i]
                 k += 1
         return k
+
+
+def evaluate(method, kwargs):
+    """Evaluates solution method and returns tuple to compare with expected output."""
+    result = method(**kwargs)
+    return result, kwargs["nums"][:result]
+
+
+def validate(actual, expected):
+    """Validates whether the actual output is as expected."""
+    from collections import Counter
+
+    if actual[0] != expected[0]:
+        return False
+    return Counter(actual[1]) == Counter(expected[1])
