@@ -40,7 +40,7 @@ class TreeNode:
 
 
 class Solution:
-    def invertTree(self, root: TreeNode) -> TreeNode:
+    def invertTree(self, root: TreeNode | None) -> TreeNode | None:
         if root is not None:
             root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root

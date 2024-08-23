@@ -25,7 +25,6 @@ class Solution:
         result = []
 
         def backtrack(open_n, closed_n, path):
-            print(f"{open_n = }, {closed_n = }, {path = }")
             if open_n == closed_n == n:
                 result.append(path)
                 return
