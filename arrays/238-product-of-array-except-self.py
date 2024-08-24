@@ -33,26 +33,6 @@ Follow up: Can you solve the problem in O(1) extra space complexity? (The out
 
 
 class Solution:
-    # For [1, 2, 3, 4] if i = 1, nums[i] = 2
-    # prefix product = 1
-    # suffix product = 3 * 4 = 12
-    # O(n) time complexity, O(n) space complexity
-    def productExceptSelf(self, nums: list[int]) -> list[int]:
-        result, prefix_products, suffix_products = [], [], []
-        curr_prefix_product, curr_suffix_product = 1, 1
-        for i in range(len(nums)):
-            curr_prefix_product *= nums[i]
-            curr_suffix_product *= nums[len(nums) - i - 1]
-            prefix_products.append(curr_prefix_product)
-            suffix_products.insert(0, curr_suffix_product)
-
-        for i in range(len(nums)):
-            prefix_product = prefix_products[i-1] if i>0 else 1
-            suffix_product = suffix_products[i+1] if i<(len(nums)-1) else 1
-            result.append(prefix_product * suffix_product)
-
-        return result
-
     # O(n) time complexity, O(1) space complexity
     # modifying result list directly instead of using 2 separate lists
     # for prefix and suffix products
