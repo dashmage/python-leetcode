@@ -14,6 +14,9 @@ Output: [[""]]
 Example 3:
 Input: strs = ["a"]
 Output: [["a"]]
+Example 4:
+Input: strs = ["aaab", "aab"]
+Output: [["aaab"],["aab"]]
  
 Constraints:
 
@@ -32,8 +35,7 @@ class Solution:
         # sorted letters mapped to all the words that can be formed from it
         anagram_map = defaultdict(list)
         for word in strs:
-            sorted_word = ''.join(sorted(word))
-            anagram_map[sorted_word].append(word)
+            anagram_map[tuple(sorted(word))].append(word)
         return list(anagram_map.values())
 
 def validate(actual, expected):

@@ -36,7 +36,7 @@ class Solution:
     # O(n) time complexity, O(1) space complexity
     # modifying result list directly instead of using 2 separate lists
     # for prefix and suffix products
-    def productExceptSelf_v2(self, nums: list[int]) -> list[int]:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
         prefix_product, suffix_product = 1, 1
         result = []
         for i in range(len(nums)):
