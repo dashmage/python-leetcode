@@ -19,6 +19,10 @@ Example 2:
 Input: height = [1,1]
 Output: 1
 
+Example 3:
+
+Input: height = [8,7,2,1]
+Output: 7
 
 Constraints:
 
@@ -34,12 +38,20 @@ class Solution:
     # O(n) time complexity
     def maxArea(self, height: list[int]) -> int:
         left, right = 0, len(height) - 1
-        max_water = min(height[left], height[right]) * (right - left)
+        max_water = 0
         while left < right:
+            cur_water = min(height[left], height[right]) * (right - left)
+            max_water = max(cur_water, max_water)
+            # move the pointer that points to the lower line
             if height[left] < height[right]:
                 left += 1
-            else:
+            elif height[left] > height[right]:
                 right -= 1
-            cur_water = min(height[left], height[right]) * (right - left)
-            max_water = max(max_water, cur_water)
+
+            # in case both lines are equal, moving either line inward results
+            # in a container with lower capacity. This is because even if we
+            # move to a taller line, the other pointer will restrict the capacity
+            else:
+                left += 1
+                right -= 1
         return max_water
