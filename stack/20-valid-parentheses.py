@@ -9,7 +9,7 @@ Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
 Every close bracket has a corresponding open bracket of the same type.
 
- 
+
 Example 1:
 
 Input: s = "()"
@@ -28,7 +28,7 @@ Output: false
 Example 4:
 Input: s = "())"
 Output: false
- 
+
 Example 5:
 Input: s = "()["
 Output: false
@@ -44,16 +44,17 @@ s consists of parentheses only '()[]{}'.
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        left = "([{"
-        right = ")]}"
+        brackets_map = {"(": ")", "[": "]", "{": "}"}
         stack = []
         for c in s:
-            if c in left:
+            # opening bracket: add to stack
+            if c in brackets_map:
                 stack.append(c)
+
+            # closing bracket: check if stack is empty or
+            #   whether closing bracket matches opening one
             else:
-                if len(stack) == 0:
+                if not stack or brackets_map[stack.pop()] != c:
                     return False
-                if right.index(c) != left.index(stack.pop()):
-                    return False
-        return len(stack) == 0
+        return not stack
 
