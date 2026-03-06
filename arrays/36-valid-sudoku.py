@@ -54,27 +54,25 @@ board[i][j] is a digit 1-9 or '.'.
 
 """
 
-from collections import defaultdict
-
-
 class Solution:
     def isValidSudoku(self, board: list[list[str]]) -> bool:
-        cols = defaultdict(set)
-        rows = defaultdict(set)
-        squares = defaultdict(set)  # key = (r/3, c/3)
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+        squares = [set() for _ in range(9)]  # key = (r/3, c/3)
 
         for r in range(9):
             for c in range(9):
                 if board[r][c] == ".":
                     continue
+                sq_indx = (r // 3) * 3 + (c // 3)
                 if (
                     board[r][c] in rows[r]
                     or board[r][c] in cols[c]
-                    or squares[(r // 3, c // 3)]
+                    or board[r][c] in squares[sq_indx]
                 ):
                     return False
                 rows[r].add(board[r][c])
                 cols[c].add(board[r][c])
-                squares[r // 3, c // 3].add(board[r][c])
+                squares[sq_indx].add(board[r][c])
 
         return True
