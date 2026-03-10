@@ -4,7 +4,7 @@ Medium
 
 Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
 You must write an algorithm that runs in O(n) time.
- 
+
 Example 1:
 
 Input: nums = [100,4,200,1,3,2]
@@ -27,7 +27,7 @@ Output: 1
 Example 4:
 Input: nums = []
 Output: 0
- 
+
 Constraints:
 
 0 <= nums.length <= 105
@@ -46,7 +46,7 @@ class Solution:
             # check if element is the start of a sequence
             # meaning the number before the element doesn't exist in the set
             if n - 1 not in all:
-                seqlen = 1
+                seqlen = 0
                 # count number of elements in the sequence
                 while n + seqlen in all:
                     seqlen += 1
