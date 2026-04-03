@@ -70,7 +70,7 @@ class Solution:
             if target > matrix[row][-1]:
                 top = row + 1
             # target lesser than first elem in row
-            elif target < matrix[row]:
+            elif target < matrix[row][0]:
                 bot = row - 1
             else: # found the right row
                 break

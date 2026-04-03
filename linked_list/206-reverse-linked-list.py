@@ -56,12 +56,12 @@ class Solution:
     def reverseListRecursive(self, head: ListNode | None) -> ListNode | None:
         if not head or not head.next:
             return head
-        new_head = self.reverseList_recursive(head.next)
+        new_head = self.reverseListRecursive(head.next)
         head.next.next = head
         head.next = None
         return new_head
 
-    def reverseListRecursive2(self, head):
+    def reverseListRecursive2(self, head: ListNode | None) -> ListNode | None:
         def reverse(cur, prev):
             if cur is None:
                 return prev

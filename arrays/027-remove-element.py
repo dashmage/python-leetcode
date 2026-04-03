@@ -54,24 +54,10 @@ Constraints:
 
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
-        k = 0
-        for i in range(len(nums)):
-            if nums[i] != val:
-                nums[k] = nums[i]
-                k += 1
-        return k
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != val:
+                nums[slow] = nums[fast]
+                slow += 1
+        return slow
 
-
-def evaluate(method, kwargs):
-    """Evaluates solution method and returns tuple to compare with expected output."""
-    result = method(**kwargs)
-    return result, kwargs["nums"][:result]
-
-
-def validate(actual, expected):
-    """Validates whether the actual output is as expected."""
-    from collections import Counter
-
-    if actual[0] != expected[0]:
-        return False
-    return Counter(actual[1]) == Counter(expected[1])

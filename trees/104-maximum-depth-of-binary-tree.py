@@ -39,7 +39,7 @@ class Solution:
         """Calculate max depth through recursive DFS."""
         if root is None:
             return 0
-        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+        return 1 + max(self.maxDepthDfs(root.left), self.maxDepthDfs(root.right))
 
     def maxDepthBfs(self, root: TreeNode) -> int:
         """Calculate max depth through BFS."""
@@ -51,9 +51,9 @@ class Solution:
             for i in range(len(q)):
                 node = q.popleft()
                 if node.left:
-                    q.enqueue(node.left)
+                    q.append(node.left)
                 if node.right:
-                    q.enqueue(node.right)
+                    q.append(node.right)
             depth += 1
         return depth
 

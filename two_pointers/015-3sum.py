@@ -76,10 +76,3 @@ def pair_sum_sorted_all_pairs(
             right -= 1
     return pairs
 
-
-def validate(actual, expected):
-    from collections import Counter
-
-    actual_converted = set(str(x) for x in (Counter(triplet) for triplet in actual))
-    expected_converted = set(str(x) for x in (Counter(triplet) for triplet in expected))
-    return actual_converted == expected_converted

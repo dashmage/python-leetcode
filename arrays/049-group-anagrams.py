@@ -31,13 +31,23 @@ strs[i] consists of lowercase English letters.
 from collections import defaultdict
 
 class Solution:
-    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+    # O(m*n) time complexity
+    def group_anagrams(self, strs: list[str]) -> list[list[str]]:
+        # hash map where each key is a 26-length tuple representing character frequencies,
+        # and each value is a list of strings belonging to that anagram group.
+        freq_map = defaultdict(list)
+        for s in strs:
+            count = [0] * 26
+            for c in s:
+                count[ord(c) - ord('a')] += 1
+            freq_map[tuple(count)].append(s)
+        return list(freq_map.values())
+
+    # O(m * nlogn) time complexity
+    # where m = number of strings, n = len of longest string
+    def group_anagrams_slow(self, strs: list[str]) -> list[list[str]]:
         # sorted letters mapped to all the words that can be formed from it
         anagram_map = defaultdict(list)
         for word in strs:
-            anagram_map[tuple(sorted(word))].append(word)
+            anagram_map[''.join(sorted(word))].append(word)
         return list(anagram_map.values())
-
-def validate(actual, expected):
-    actual = sorted([sorted(elem) for elem in actual], key=lambda x: len(x))
-    return actual == expected

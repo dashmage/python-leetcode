@@ -4,7 +4,7 @@ Easy
 
 Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 You must write an algorithm with O(log n) runtime complexity.
- 
+
 Example 1:
 
 Input: nums = [1,3,5,6], target = 5
@@ -20,7 +20,7 @@ Example 3:
 Input: nums = [1,3,5,6], target = 7
 Output: 4
 
- 
+
 Constraints:
 
 1 <= nums.length <= 104
@@ -34,11 +34,17 @@ nums contains distinct values sorted in ascending order.
 
 class Solution:
     def searchInsert(self, nums: list[int], target: int) -> int:
-        left, right = 0, len(nums) - 1
+        left, right = 0, len(nums)
         while left < right:
             mid = (left + right) // 2
-            if target > nums[mid]:
-                left = mid + 1
-            else:
+
+            # if the midpoint is >= target, the lower bound
+            # is either at the midpoint, or to its left
+            if nums[mid] >= target:
                 right = mid
-        return left + 1 if target > nums[left] else left
+
+            # The midpoint value is less than the target, indicating
+            # the lower bound is somewhere to the right
+            else:
+                left = mid + 1
+        return left
